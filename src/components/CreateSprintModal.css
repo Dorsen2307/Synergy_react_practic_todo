@@ -1,0 +1,137 @@
+.create-sprint-modal {
+    max-width: 600px;
+}
+
+.date-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.duration-info-card {
+    margin: 20px 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 2px solid #e9eef3;
+    animation: slideDown 0.3s ease;
+}
+
+.duration-info-card h4 {
+    margin: 0 0 16px 0;
+    color: #172b4d;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.duration-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.duration-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.duration-label {
+    color: #5e6c84;
+    font-size: 14px;
+}
+
+.duration-value {
+    font-weight: 600;
+    color: #172b4d;
+}
+
+.duration-value.highlight {
+    color: #0052cc;
+    font-size: 18px;
+}
+
+.duration-progress {
+    margin: 16px 0 8px;
+}
+
+.progress-bar-container {
+    display: flex;
+    height: 24px;
+    background-color: #e9eef3;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.progress-bar.working {
+    background: linear-gradient(90deg, #0052cc, #4c9aff);
+}
+
+.progress-bar.weekend {
+    background: linear-gradient(90deg, #ffab00, #ffc400);
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.working-label {
+    color: #0052cc;
+}
+
+.weekend-label {
+    color: #ffab00;
+}
+
+.date-range-preview {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #dfe1e6;
+}
+
+.preview-item {
+    display: flex;
+    gap: 8px;
+    padding: 4px 0;
+}
+
+.preview-label {
+    min-width: 30px;
+    color: #5e6c84;
+    font-weight: 500;
+}
+
+.preview-value {
+    color: #172b4d;
+    text-transform: capitalize;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .date-fields {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,50 @@
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #1a2639;
+    color: white;
+    padding: 20px 0;
+}
+
+.logo {
+    padding: 0 20px;
+    margin-bottom: 30px;
+}
+
+.logo h2 {
+    font-size: 20px;
+    color: #fff;
+}
+
+.nav-menu {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-menu li {
+    margin-bottom: 5px;
+}
+
+.nav-menu li a {
+    display: block;
+    padding: 12px 20px;
+    color: #b3b9c4;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.nav-menu li:hover a,
+.nav-menu li.active a {
+    background-color: #2c3a5e;
+    color: white;
+}
+
+.main-content {
+    flex: 1;
+    background-color: #f4f5f7;
+    padding: 20px;
+}

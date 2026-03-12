@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { TaskProvider } from './context/TaskContext';
+import { SprintProvider } from './context/SprintContext';
+import { UserProvider } from './context/UserContext';
+import Layout from './components/Layout';
+import Dashboard from './pages/Dashboard';
+import ActiveSprint from './pages/ActiveSprint';
+import AdminPanel from './pages/AdminPanel';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+      <TaskProvider>
+        <SprintProvider>
+          <Router>
+            <Layout>
+              <Routes>
+                <Route path="/" element={<Navigate to="/dashboard" />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/active-sprint" element={<ActiveSprint />} />
+                <Route path="/admin" element={<AdminPanel />} />
+              </Routes>
+            </Layout>
+          </Router>
+        </SprintProvider>
+      </TaskProvider>
+    </UserProvider>
   );
 }
 

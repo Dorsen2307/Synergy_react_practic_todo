@@ -1,0 +1,50 @@
+.char-counter {
+    margin-top: 4px;
+    font-size: 12px;
+}
+
+.counter-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+}
+
+.counter-info .valid {
+    color: #36b37e;
+}
+
+.counter-info .near-limit {
+    color: #ffab00;
+}
+
+.counter-info .invalid {
+    color: #de350b;
+}
+
+.remaining {
+    color: #5e6c84;
+}
+
+.progress-bar-container {
+    height: 3px;
+    background-color: #dfe1e6;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.progress-bar.valid {
+    background-color: #36b37e;
+}
+
+.progress-bar.near-limit {
+    background-color: #ffab00;
+}
+
+.progress-bar.invalid {
+    background-color: #de350b;
+}

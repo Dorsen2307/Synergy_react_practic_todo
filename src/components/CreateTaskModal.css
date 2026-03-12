@@ -1,0 +1,86 @@
+.create-task-modal {
+    max-width: 700px;
+}
+
+.time-left-info {
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #deebff 0%, #f0f7ff 100%);
+    border-radius: 8px;
+    color: #0052cc;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 4px solid #0052cc;
+}
+
+.char-hint {
+    font-size: 11px;
+    color: #5e6c84;
+    font-weight: normal;
+    margin-left: 5px;
+}
+
+.form-control.error {
+    border-color: #de350b;
+}
+
+.form-control.error:focus {
+    border-color: #de350b;
+    box-shadow: 0 0 0 2px rgba(222, 53, 11, 0.2);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid #f4f5f7;
+}
+
+/* Обновление для кликабельных элементов */
+.task-item.clickable {
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.task-item.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.task-card.clickable {
+    cursor: pointer;
+}
+
+.task-card.clickable:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Анимации */
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal {
+    animation: modalSlideIn 0.3s ease;
+}

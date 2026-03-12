@@ -1,0 +1,12 @@
+.active-sprint {
+    padding: 20px;
+}
+
+.active-sprint h1 {
+    margin-bottom: 30px;
+    color: #172b4d;
+}
+
+.sprint-controls {
+    margin-bottom: 30px;
+}
