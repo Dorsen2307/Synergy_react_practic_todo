@@ -4,6 +4,7 @@ import { useUsers } from '../context/UserContext';
 import TaskDetailsModal from './TaskDetailsModal';
 import './KanbanBoard.css';
 
+// Доска задач
 const KanbanBoard = ({ filterUserId }) => {
   const { tasks, updateTaskStatus, formatTime } = useTasks();
   const { users } = useUsers();
@@ -15,6 +16,7 @@ const KanbanBoard = ({ filterUserId }) => {
     return user ? user.fullName : 'Не назначен';
   };
 
+  // Фильтрация задач
   const filteredTasks = useMemo(() => {
     if (!filterUserId) return tasks;
     return tasks.filter(task => task.assignee === filterUserId);
@@ -26,6 +28,7 @@ const KanbanBoard = ({ filterUserId }) => {
     { id: 'done', title: 'Выполнено', color: '#36b37e' },
   ];
 
+  // Drag-and-drop обработчики
   const handleDragStart = (e, taskId) => {
     e.dataTransfer.setData('taskId', taskId);
   };
@@ -48,6 +51,7 @@ const KanbanBoard = ({ filterUserId }) => {
     }
   };
 
+  // Получение задач для конкретной колонки
   const getTasksByStatus = (status) => {
     return filteredTasks.filter(task => task.status === status);
   };
@@ -62,18 +66,21 @@ const KanbanBoard = ({ filterUserId }) => {
             onDragOver={handleDragOver}
             onDrop={(e) => handleDrop(e, column.id)}
           >
+            {/* Заголовок колонки с количеством задач */}
             <div className="column-header" style={{ backgroundColor: column.color }}>
               <h3>{column.title}</h3>
               <span className="task-count">
                 {getTasksByStatus(column.id).length}
               </span>
             </div>
+
+            {/* Задачи в колонке */}
             <div className="column-content">
               {getTasksByStatus(column.id).map(task => (
                 <div
                   key={task.id}
                   className="task-card clickable"
-                  draggable
+                  draggable // Делаем карточку перетаскиваемой
                   onDragStart={(e) => handleDragStart(e, task.id)}
                   onClick={(e) => handleTaskClick(task, e)}
                 >

@@ -8,11 +8,13 @@ import Select from './Select';
 import ObserversSelect from './ObserversSelect';
 import './CreateTaskModal.css';
 
+// Создание задачи
 const CreateTaskModal = ({ isOpen, onClose }) => {
   const { addTask, formatTime } = useTasks();
   const { users } = useUsers();
   const { getRemainingTime } = useSprint();
 
+  // Состояние формы
   const [formData, setFormData] = useState({
     title: '',
     subtitle: '',
@@ -28,9 +30,11 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
+  // Проверка времени в спринте
   const remainingDays = getRemainingTime();
   const remainingHours = remainingDays * 8;
 
+  // Валидация формы
   const validateForm = () => {
     const newErrors = {};
 
@@ -77,6 +81,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
         timeEstimate: parseInt(formData.timeEstimate),
       });
 
+      // Сброс формы
       setFormData({
         title: '',
         subtitle: '',
@@ -118,6 +123,7 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
     <div className="modal-overlay">
       <div className="modal create-task-modal">
         <h2>Создание задачи</h2>
+        {/* Информация о времени в спринте */}
         <p className="time-left-info">{timeLeftMessage}</p>
 
         <form onSubmit={handleSubmit}>
@@ -194,7 +200,6 @@ const CreateTaskModal = ({ isOpen, onClose }) => {
             placeholder="Минимум 40 символов (необязательно)"
           />
 
-          {/* Заменяем Input на ObserversSelect */}
           <ObserversSelect
             value={formData.observers}
             onChange={handleObserversChange}

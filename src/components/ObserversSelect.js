@@ -2,21 +2,24 @@ import React, {useState} from 'react';
 import {useUsers} from '../context/UserContext';
 import './ObserversSelect.css';
 
+// Выбор наблюдателей
 const ObserversSelect = ({ value = [], onChange }) => {
   const { users } = useUsers();
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Массив для выбранных наблюдателей
   const selectedObservers = Array.isArray(value) ? value : [];
 
+  // Добавление/удаление наблюдателя
   const handleToggleObserver = (userId) => {
     let newObservers;
     if (selectedObservers.includes(userId)) {
-      newObservers = selectedObservers.filter(id => id !== userId);
+      newObservers = selectedObservers.filter(id => id !== userId); // Если уже выбран - удаляем
     } else {
-      newObservers = [...selectedObservers, userId];
+      newObservers = [...selectedObservers, userId]; // Если не выбран - добавляем
     }
-    onChange(newObservers);
+    onChange(newObservers); // Возвращаем новый массив
   };
 
   const handleRemoveObserver = (userId, e) => {
@@ -25,6 +28,7 @@ const ObserversSelect = ({ value = [], onChange }) => {
     onChange(newObservers);
   };
 
+  // Фильтрация пользователей по поисковому запросу
   const filteredUsers = users.filter(user =>
     user.fullName.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.position.toLowerCase().includes(searchTerm.toLowerCase())
@@ -48,6 +52,7 @@ const ObserversSelect = ({ value = [], onChange }) => {
               <span className="observer-name">{user.fullName}</span>
               <span className="observer-position">{user.position}</span>
             </span>
+            {/* Кнопка удаления из выбранных */}
             <button
               type="button"
               className="remove-observer"
@@ -63,7 +68,7 @@ const ObserversSelect = ({ value = [], onChange }) => {
         )}
       </div>
 
-      {/* Кнопка для открытия списка */}
+      {/* Кнопка для открытия/закрытия списка */}
       <button
         type="button"
         className="btn btn-secondary select-observers-btn"
@@ -85,6 +90,8 @@ const ObserversSelect = ({ value = [], onChange }) => {
               autoFocus
             />
           </div>
+
+          {/* Список пользователей */}
           <div className="observers-list">
             {filteredUsers.length > 0 ? (
               filteredUsers.map(user => (

@@ -1,10 +1,11 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, {createContext, useContext, useState} from 'react';
 
 const SprintContext = createContext();
 
 export const useSprint = () => useContext(SprintContext);
 
 export const SprintProvider = ({ children }) => {
+  // Текущий активный спринт
   const [currentSprint, setCurrentSprint] = useState({
     id: 'sprint-1',
     name: 'Спринт 1',
@@ -16,23 +17,25 @@ export const SprintProvider = ({ children }) => {
 
   const [sprints, setSprints] = useState([currentSprint]);
 
+  // Добавление нового спринта
   const addSprint = (sprint) => {
     const newSprint = {
       ...sprint,
       id: `sprint-${Date.now()}`,
     };
     setSprints([...sprints, newSprint]);
-    setCurrentSprint(newSprint);
+    setCurrentSprint(newSprint); // Новый спринт становится текущим
   };
 
+  // Расчет длительности в днях
   const calculateDuration = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const diffTime = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
 
+  // Получение оставшегося времени в спринте
   const getRemainingTime = () => {
     if (!currentSprint?.endDate) return 0;
     const now = new Date();

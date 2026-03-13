@@ -7,6 +7,7 @@ import EnhancedStatsChart from '../components/EnhancedStatsChart';
 import TaskDetailsModal from '../components/TaskDetailsModal';
 import './Dashboard.css';
 
+// Рабочий стол
 const Dashboard = () => {
   const { tasks, getCompletedTasks, formatTime } = useTasks();
   const { currentSprint } = useSprint();
@@ -17,6 +18,7 @@ const Dashboard = () => {
 
   const completedTasks = getCompletedTasks();
 
+  // Фильтрация задач по выбранному пользователю
   const filterTasks = (tasksList) => {
     if (!selectedUserId) return tasksList;
     return tasksList.filter(task => task.assignee === selectedUserId);
@@ -30,6 +32,7 @@ const Dashboard = () => {
     return user ? user.fullName : 'Не назначен';
   };
 
+  // Прогресс спринта
   const getSprintProgress = () => {
     if (!currentSprint?.startDate || !currentSprint?.endDate) return 0;
 
@@ -53,6 +56,7 @@ const Dashboard = () => {
     <div className="dashboard">
       <h1>Рабочий стол</h1>
 
+      {/* Информация о спринте */}
       <div className="sprint-info">
         <h2>Текущий спринт: {currentSprint?.name}</h2>
         <div className="sprint-details">
@@ -67,8 +71,10 @@ const Dashboard = () => {
         </div>
       </div>
 
+      {/* Фильтр по пользователям */}
       <UserFilter />
 
+      {/* Графики статистики */}
       <div className="stats-section">
         <EnhancedStatsChart
           tasks={tasks}
@@ -76,6 +82,7 @@ const Dashboard = () => {
         />
       </div>
 
+      {/* Вкладки Product/Backlog */}
       <div className="tabs">
         <button
           className={`tab ${activeTab === 'product' ? 'active' : ''}`}
@@ -91,6 +98,7 @@ const Dashboard = () => {
         </button>
       </div>
 
+      {/* Список задач в зависимости от вкладки */}
       {activeTab === 'product' && (
         <div className="product-tab">
           <div className="completed-tasks">
@@ -102,6 +110,7 @@ const Dashboard = () => {
                   className="task-item clickable"
                   onClick={() => handleTaskClick(task)}
                 >
+                  {/* Отображение задачи */}
                   <div className="task-header">
                     <span className="task-id">{task.id}</span>
                     <span className="task-status done">✓ Выполнено</span>
@@ -129,6 +138,7 @@ const Dashboard = () => {
                 className="task-item clickable"
                 onClick={() => handleTaskClick(task)}
               >
+                {/* Отображение задачи */}
                 <div className="task-header">
                   <span className="task-id">{task.id}</span>
                   <span className={`task-status ${task.status}`}>
@@ -147,6 +157,7 @@ const Dashboard = () => {
         </div>
       )}
 
+      {/* Модальное окно с деталями задачи */}
       <TaskDetailsModal
         task={selectedTask}
         isOpen={isModalOpen}

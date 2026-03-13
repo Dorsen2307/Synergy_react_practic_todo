@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {useUsers} from '../context/UserContext';
 import './EnhancedStatsChart.css';
 
+// Расширенная статистика
 const EnhancedStatsChart = ({ tasks, filterUserId }) => {
   const { users } = useUsers();
   const [chartType, setChartType] = useState('status');
@@ -140,6 +141,7 @@ const EnhancedStatsChart = ({ tasks, filterUserId }) => {
     <div className="enhanced-stats-chart">
       <div className="chart-header">
         <h3>Аналитика задач</h3>
+        {/* Переключатель типов графиков */}
         <div className="chart-type-selector">
           <button
             className={`chart-type-btn ${chartType === 'status' ? 'active' : ''}`}
@@ -162,12 +164,14 @@ const EnhancedStatsChart = ({ tasks, filterUserId }) => {
         </div>
       </div>
 
+      {/* Рендер выбранного типа графика */}
       {chartType === 'status' && (
         <div className="status-chart">
           <div className="pie-chart-container">
             <PieChart stats={statusStats} />
           </div>
 
+          {/* Карточки со статистикой */}
           <div className="stats-cards">
             <div className="stat-card todo">
               <div className="stat-value">{statusStats.todo}</div>
